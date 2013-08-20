@@ -1,0 +1,9 @@
+*.cache.html
+war/WEB-INF/classes
+war/WEB-INF/deploy
+war/html_email
+.settings/
+.gwt/
+gwt-unitCache/
+
+

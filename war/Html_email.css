@@ -1,0 +1,108 @@
+html,body.html_email {
+ background-color: #CCC;
+ height: 100%;
+ width: 100%;
+ margin: 0px;
+ padding: 0px;
+ border: 0px;
+ overflow: scroll;
+ font-family: verdana;
+}
+
+.previewed { //
+ text-decoration: underline overline;
+ background-color: yellow;
+ color: black;
+}
+
+ul.fileInfo li span.overwrites {
+ color: red;
+}
+
+ul.fileInfo li {
+ list-style: none;
+}
+
+div.left_scroll,div.right_scroll {
+ margin-top: 18px;
+}
+
+div.scroll_tabs.scroll {
+ margin-left: 35px;
+}
+
+.closable_tab {
+ overflow: hidden;
+ width: auto;
+}
+
+.close {
+ float: right;
+}
+
+div.closable_tab span {
+ -webkit-user-select: none;
+ -moz-user-select: none;
+ -ms-user-select: none;
+ user-select: none;
+}
+
+.editor {
+ overflow: scroll !important;
+ width: 99%;
+ height: 100%;
+}
+
+div.ClosableTabLayoutPanel.add {
+ width: 100%;
+ padding-left: 4px;
+ padding-right: 4px;
+}
+
+div.gwt-TabLayoutPanelTabs>div:first-child {
+ background-color: #333;
+ padding-left: 0px;
+ padding-right: 8px;
+ color: white;
+}
+
+div.gwt-TabLayoutPanel {
+ height: 100%;
+}
+
+#root_container {
+ position: relative;
+ height: 100%;
+ width: 100%;
+}
+
+.html_preview {
+ background-color: white;
+ height: 100%;
+}
+
+div#dialog_background {
+ background-color: #222;
+ filter: alpha(opacity =   70);
+ opacity: 0.7;
+ position: absolute;
+ left: 0px;
+ right: 0px;
+ top: 0px;
+ bottom: 0px;
+ z-index: 100;
+}
+
+div.gwt-DialogBox {
+ z-index: 200;
+}
+
+input.tabrename {
+ margin: 0px;
+ padding: 0px;
+}
+
+div.editing {
+ margin: 0px;
+ padding: 0px;
+}

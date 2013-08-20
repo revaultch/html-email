@@ -1,0 +1,14 @@
+
+
+
+body.nopreview, html.nopreview  { 
+ color: white;
+ background-color: black;
+ vertical-align: middle;
+ text-align: left;
+ height: 100%;
+ width: 100%;
+ padding: 15px; 
+ overflow-x: hidden;
+ font-family: verdana;
+}

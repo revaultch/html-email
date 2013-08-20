@@ -1,0 +1,26 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:t="urn:import:ch.takoyaki.email.html.client.ui.generic">
+ <ui:style>
+  .important {
+   font-weight: bold;
+  }
+ </ui:style>
+
+ <g:HTMLPanel styleName="fileUpload">
+  <g:DialogBox ui:field="dialog">
+   <g:caption>Upload from file system</g:caption>
+   <g:HTMLPanel>
+    <g:FormPanel>
+     <g:FlowPanel>
+      <g:FileUpload ui:field="fileUpload" name="upload[]"></g:FileUpload>
+      <t:UnOrderedList ui:field="fileInfo" styleName="fileInfo" />
+      <g:HorizontalPanel horizontalAlignment="ALIGN_CENTER" spacing="5">
+       <g:Button ui:field="upload">Upload</g:Button>
+       <g:Button ui:field="cancel">Cancel</g:Button>       
+      </g:HorizontalPanel>
+     </g:FlowPanel>
+    </g:FormPanel>
+   </g:HTMLPanel>
+  </g:DialogBox>
+ </g:HTMLPanel>
+</ui:UiBinder> 
