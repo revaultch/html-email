@@ -2,6 +2,7 @@ package ch.takoyaki.email.html.client;
 
 import ch.takoyaki.email.html.client.service.FileService;
 import ch.takoyaki.email.html.client.utils.Html;
+import ch.takoyaki.email.html.client.utils.Postprocessing;
 import ch.takoyaki.email.html.client.utils.Xsl;
 
 import com.google.gwt.core.client.GWT;
@@ -93,7 +94,9 @@ public class HtmlPreview extends Composite implements ContentRenderer {
 				}
 			}
 			content = Html.inlinecss(content, fservice);
-			// setPreviewContent(content, contentType);
+
+			content = Postprocessing.beforePreview(content, fservice);
+
 			setPreviewContent(content);
 		}
 

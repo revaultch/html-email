@@ -1,5 +1,6 @@
 package ch.takoyaki.email.html.client;
 
+import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.event.dom.client.KeyUpHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
@@ -34,13 +35,35 @@ public class PreviewUpdateTrigger {
 
 		@Override
 		public void onKeyUp(KeyUpEvent event) {
-			t.cancel();
-			t.schedule(2000);
+			switch (event.getNativeKeyCode()) {
+			case KeyCodes.KEY_ALT:
+			case KeyCodes.KEY_CTRL:
+			case KeyCodes.KEY_DOWN:
+			case KeyCodes.KEY_END:
+			case KeyCodes.KEY_ESCAPE:
+			case KeyCodes.KEY_HOME:
+			case KeyCodes.KEY_LEFT:
+			case KeyCodes.KEY_PAGEDOWN:
+			case KeyCodes.KEY_PAGEUP:
+			case KeyCodes.KEY_RIGHT:
+			case KeyCodes.KEY_SHIFT:
+			case KeyCodes.KEY_TAB:
+			case KeyCodes.KEY_UP:
+				break;
+			default:
+				t.cancel();
+				t.schedule(2000);
+			}
+
 		}
 	};
 
-	public void setWatched(Widget tabWidget, HasText title, TextArea ta) {
-		if (watchedTab!=null && watchedTab == tabWidget) {
+	public void watchTextArea(TextArea ta) {
+		ta.addKeyUpHandler(keyupHandler);
+	}
+
+	public void setPreviewTab(Widget tabWidget, HasText title) {
+		if (watchedTab != null && watchedTab == tabWidget) {
 			return;
 		}
 		tabWidget.addStyleName("previewed");
@@ -54,7 +77,6 @@ public class PreviewUpdateTrigger {
 			registration.removeHandler();
 		}
 		previewedTabName = title;
-		registration = ta.addKeyUpHandler(keyupHandler);
 		t.schedule(2000);
 	}
 

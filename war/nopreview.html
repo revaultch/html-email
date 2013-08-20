@@ -25,7 +25,23 @@
  <p>Each file is saved locally in your browser's files. Note if you use different browsers on different computers
   that each of them has a different set of files</p>
 
+ <h2>XSLT</h2>
+ <p>The editor supports xslt with a &lt;?xml-stylesheet type="text/xsl" href="styles_email.xsl"?&gt; declaration.
+  the style sheet must be one of the open tabs and named correctly.</p>
 
+ <h2>Postprocessing</h2>
+ <p>As a last resort to transform the document a special file named __postprocessing.js can be created.</p>
+ <p>This file can contain arbitrary javascript code but the entry points are the following functions:</p>
+ <ul>
+  <li>function before_save_eml(content)</li>
+  <li>function before_save_html(content)</li>
+  <li>function before_preview(content)</li>
+ </ul>
+ <p>They should return the transformed content e.g.</p>
+ <pre>function before_preview(content) {
+  return content;
+ }
+ </pre>
 
  <h2>Menus</h2>
  <h3>File</h3>

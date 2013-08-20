@@ -42,8 +42,9 @@ public class MenuBarBuilder {
 
 		MenuBar exportMenu = new MenuBar(true);
 		exportMenu.addItem("Single HTML", new DownloadHtmlCommand(
-				contentRenderer));
-		exportMenu.addItem("EML File", new DownloadEmlCommand(contentRenderer));
+				contentRenderer, fservice));
+		exportMenu.addItem("EML File", new DownloadEmlCommand(contentRenderer,
+				fservice));
 
 		menu = new MenuBar();
 		menu.addSeparator();

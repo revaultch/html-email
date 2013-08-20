@@ -21,6 +21,7 @@ import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextArea;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 /**
@@ -35,14 +36,17 @@ public class Html_email implements EntryPoint {
 		tablayout.add(contentContainer, title);
 	}
 
-	private CloseableTabs createWrapper(ClosableTabLayoutPanel tabs) {
+	private CloseableTabs createWrapper(ClosableTabLayoutPanel tabs,
+			final PreviewUpdateTrigger trigger) {
 		return new CloseableTabsWrapper(tabs) {
 			@Override
 			public void add(Widget widget, String title) {
 				if (widget instanceof TextArea) {
 					final TextArea contentContainer = (TextArea) widget;
-					contentContainer.addStyleName("editor");
+					trigger.watchTextArea(contentContainer);
+					contentContainer.addStyleName("editor");					
 					wrapped.add(contentContainer, title);
+					contentContainer.getElement().getParentElement().addClassName("editor_container");
 					String retrieved = fservice.retrieve(title);
 					if (retrieved != null) {
 						contentContainer.setText(retrieved);
@@ -124,9 +128,8 @@ public class Html_email implements EntryPoint {
 			@Override
 			public void onMark(CloseableTabs l, int pos) {
 				Widget tabWidget = tab.getTabWidget(pos);
-				TextArea ta = (TextArea) tab.getWidget(pos);
 				HasText text = tab.getTabTitle(pos);
-				trigger.setWatched(tabWidget, text, ta);
+				trigger.setPreviewTab(tabWidget, text);
 			}
 		};
 	}
@@ -155,28 +158,29 @@ public class Html_email implements EntryPoint {
 
 		// edit tabs
 		final ClosableTabLayoutPanel tabs = new ClosableTabLayoutPanel();
-		CloseableTabs tabsw = createWrapper(tabs);
+		CloseableTabs tabsw = createWrapper(tabs, trigger);
 		tabs.setAddTabEventHandler(createAddTabEventHandler(tabsw));
 		tabs.setCloseTabEventHandler(createCloseTabEventHandler(rootPanel));
 		tabs.setRenameTabEventHandler(createRenameTabEventHAndler());
 		tabs.setMarkTabEventHandler(createMarkTabEventHAndler(tabsw, trigger));
 		openSavedTabs(tabsw);
 
-		FlowPanel p = new FlowPanel();
+		VerticalPanel north = new VerticalPanel();
+		north.addStyleName("north");
 
 		// menu
 		MenuBarBuilder builder = new MenuBarBuilder(fservice, preview, tabsw);
-		builder.addRootPanel(p);
+		builder.addRootPanel(north);
 		builder.constructMenu();
 		builder.show();
 
-		p.add(tabs);
+		north.add(tabs);
 
 		// vertical split between preview and edit
 		VSplitPanel vsplit = new VSplitPanel();
 
 		// wiring
-		vsplit.addNorth(p, 400);
+		vsplit.addNorth(north, 400);
 		vsplit.addSouth(preview);
 		rootPanel.add(vsplit);
 
