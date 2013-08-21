@@ -1,3 +1,4 @@
+compiled
 *.cache.html
 war/WEB-INF/classes
 war/WEB-INF/deploy

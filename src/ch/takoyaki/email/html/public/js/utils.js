@@ -151,7 +151,7 @@ function wrapMime(subject, content) {
 			+ "this format, some or all of this message may not be legible.\n"
 			+ "\n" + delim + "\n" + "Content-type: text/html;\n"
 			+ "	charset=\"UTF-8\"\n"
-			+ "Content-Disposition: inline;filename=newsletter.html\n"
+			//+ "Content-Disposition: inline;filename=newsletter.html\n"
 			+ "Content-transfer-encoding: quoted-printable\n" + "\n";
 
 	var result = mail + quoted_printable_encode(utf8_encode(content)) + "\n"
