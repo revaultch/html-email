@@ -5,5 +5,7 @@ war/html_email
 .settings/
 .gwt/
 gwt-unitCache/
+war/WEB-INF/lib/gwt-servlet.jar
+
 
 

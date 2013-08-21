@@ -142,7 +142,9 @@ public class UploadDialog extends Composite {
 	}
 
 	private boolean isSupportedType(JsFile file) {
-		return file.getType().startsWith("text/");
+		return file.getType().startsWith("text/")
+				|| file.getType().equals("application/javascript")
+				|| file.getType().equals("application/x-javascript");
 	}
 
 	private boolean wouldOverwrite(String fileName) {
