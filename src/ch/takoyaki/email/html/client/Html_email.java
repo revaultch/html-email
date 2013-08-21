@@ -17,7 +17,6 @@ import ch.takoyaki.email.html.client.ui.generic.VSplitPanel;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.event.dom.client.KeyUpHandler;
-import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextArea;

@@ -25,6 +25,8 @@ public class HtmlPreview extends Composite implements ContentRenderer {
 
 	private int scrollTopValue = 0;
 
+	private String previewedName;
+
 	interface HtmlPreviewUiBinder extends UiBinder<Widget, HtmlPreview> {
 	}
 
@@ -42,10 +44,6 @@ public class HtmlPreview extends Composite implements ContentRenderer {
 
 	public int getScrollTopValue() {
 		return scrollTopValue;
-	}
-
-	public void setSource(String source) {
-
 	}
 
 	private Frame getFrame() {
@@ -80,16 +78,16 @@ public class HtmlPreview extends Composite implements ContentRenderer {
 		if (text == null) {
 			return;
 		}
+
 		scrollTopValue = scrollTop();
 
 		String content = fservice.retrieve(text);
 		if (content != null) {
+			this.previewedName = text;
 			if (isXmlContent(content)) {
 				String xsl = Xsl.loadStyleSheetContent(content, fservice);
-				// Log.log("xsl=" + xsl);
 				content = Xsl.removeStyleSheet(content);
 				if (xsl != null) {
-					// Log.log("xsl != null");
 					content = Xsl.xslttransform(xsl, content);
 				}
 			}
@@ -100,6 +98,14 @@ public class HtmlPreview extends Composite implements ContentRenderer {
 			setPreviewContent(content);
 		}
 
+	}
+
+	@Override
+	public String getRenderedFileName() {
+		if (this.previewedName != null) {
+			return this.previewedName;
+		}
+		return "empty";
 	}
 
 }
