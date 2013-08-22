@@ -15,7 +15,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import ch.takoyaki.email.html.client.logging.Log;
 import ch.takoyaki.email.html.client.ui.generic.TextEditor;
 
 import com.google.gwt.core.client.GWT;

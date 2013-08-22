@@ -10,8 +10,6 @@
  ******************************************************************************/
 package ch.takoyaki.email.html.client.ui.generic;
 
-import ch.takoyaki.email.html.client.logging.Log;
-
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.user.client.ui.Composite;
