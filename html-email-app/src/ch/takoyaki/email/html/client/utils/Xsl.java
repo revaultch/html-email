@@ -17,9 +17,10 @@ import com.google.gwt.regexp.shared.RegExp;
 
 public class Xsl {
 
-	private static String stripXmlComments(String content) {
-		RegExp p = RegExp.compile("<!--[\\w\\W]*-->", "gmi");
-		return p.replace(content, "");
+	public static String stripXmlComments(String content) {
+		RegExp p = RegExp.compile("<!--[\\w\\W]*?-->", "gmi");
+		String stripped = p.replace(content, "");
+		return stripped;
 	}
 
 	public static String loadStyleSheetContent(String content,
