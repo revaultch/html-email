@@ -1,3 +1,13 @@
+/*******************************************************************************
+ * Copyright (c) 2013 takoyaki.ch.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the GNU Public License v3.0
+ * which accompanies this distribution, and is available at
+ * http://www.gnu.org/licenses/gpl.html
+ * 
+ * Contributors:
+ *     takoyaki.ch - Initial version
+ ******************************************************************************/
 package ch.takoyaki.email.html.client.ui.generic;
 
 import com.google.gwt.core.client.GWT;
@@ -19,10 +29,13 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.InlineHTML;
 import com.google.gwt.user.client.ui.IsWidget;
+import com.google.gwt.user.client.ui.ProvidesResize;
+import com.google.gwt.user.client.ui.RequiresResize;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
-public class ClosableTabLayoutPanel extends Composite implements CloseableTabs {
+public class ClosableTabLayoutPanel extends Composite implements CloseableTabs,
+		RequiresResize, ProvidesResize {
 
 	public static interface Resources extends ClientBundle {
 		public static final Resources INSTANCE = GWT.create(Resources.class);
@@ -296,6 +309,11 @@ public class ClosableTabLayoutPanel extends Composite implements CloseableTabs {
 
 	public Widget getWidget(int pos) {
 		return getTab().getWidget(pos);
+	}
+
+	@Override
+	public void onResize() {
+		getTab().onResize();
 	}
 
 }

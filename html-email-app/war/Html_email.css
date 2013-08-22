@@ -1,3 +1,13 @@
+#-------------------------------------------------------------------------------
+# Copyright (c) 2013 takoyaki.ch.
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the GNU Public License v3.0
+# which accompanies this distribution, and is available at
+# http://www.gnu.org/licenses/gpl.html
+# 
+# Contributors:
+#     takoyaki.ch - Initial version
+#-------------------------------------------------------------------------------
 html,body.html_email {
  background-color: #CCC;
  height: 100%;
@@ -47,7 +57,6 @@ div.closable_tab span {
  user-select: none;
 }
 
-
 div.ClosableTabLayoutPanel.add {
  width: 100%;
  padding-left: 4px;
@@ -61,13 +70,7 @@ div.gwt-TabLayoutPanelTabs>div:first-child {
  color: white;
 }
 
-div.gwt-TabLayoutPanel {
- height: 100%;
-
-}
-
 #root_container {
- position: relative;
  height: 100%;
  width: 100%;
 }
@@ -79,7 +82,7 @@ div.gwt-TabLayoutPanel {
 
 div#dialog_background {
  background-color: #222;
- filter: alpha(opacity =     70);
+ filter: alpha(opacity =70);
  opacity: 0.7;
  position: absolute;
  left: 0px;
@@ -93,8 +96,6 @@ div#dialog_background {
  z-index: 99;
 }
 
-
-
 div.gwt-DialogBox {
  z-index: 200;
 }
@@ -104,25 +105,27 @@ input.tabrename {
  padding: 0px;
 }
 
-div.editing {
- margin: 0px;
- padding: 0px;
+
+
+div.gwt-MenuBar {
+ 
+}
+div.scroll_tabs {
+ height: 1cm;
+ //position:relative !important;
+}
+div.editor {
+ //bottom: 1cm !important;
+ //padding-bottom: 100px !important;
+ //margin-bottom: 100px !important;
+ //bottom: 1cm !important;
 }
 
-table.north {
- height: 100%;
- width: 100%;
+div.gwt-TabLayoutPanel {
+ position: absolute !important;
+ bottom: 0;
+ top: 1cm;
+ left: 0;
+ right: 0;
 }
-
-table.north tr:nth-of-type(2) td {
- height:100%;
-}
-
-.editor {
- overflow: scroll !important;
- width: 100%;
- height:100%;
-}
-
-
 

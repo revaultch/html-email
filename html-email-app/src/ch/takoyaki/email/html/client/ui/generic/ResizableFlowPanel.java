@@ -8,26 +8,19 @@
  * Contributors:
  *     takoyaki.ch - Initial version
  ******************************************************************************/
-package ch.takoyaki.email.html.client.service;
+package ch.takoyaki.email.html.client.ui.generic;
 
-import java.util.List;
+import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.ProvidesResize;
+import com.google.gwt.user.client.ui.RequiresResize;
+import com.google.gwt.user.client.ui.Widget;
 
-public interface FileService {
-
-	boolean isSupported();
-
-	String getNewName();
-
-	void store(String fname, String text);
-
-	String retrieve(String fname);
-
-	List<String> list();
-
-	void rename(String previousName, String newName);
-
-	void delete(String fname);
-
-	String retrieveAllAsZipBase64();
-
+public class ResizableFlowPanel extends FlowPanel implements RequiresResize, ProvidesResize {
+	public void onResize() {
+		for (Widget c : getChildren()) {
+			if (c instanceof RequiresResize) {
+				((RequiresResize) c).onResize();
+			}
+		}
+	};
 }

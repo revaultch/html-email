@@ -1,3 +1,13 @@
+/*******************************************************************************
+ * Copyright (c) 2013 takoyaki.ch.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the GNU Public License v3.0
+ * which accompanies this distribution, and is available at
+ * http://www.gnu.org/licenses/gpl.html
+ * 
+ * Contributors:
+ *     takoyaki.ch - Initial version
+ ******************************************************************************/
 package ch.takoyaki.email.html.client;
 
 import ch.takoyaki.email.html.client.service.FileService;
@@ -12,12 +22,12 @@ import ch.takoyaki.email.html.client.ui.generic.ClosableTabLayoutPanel.MarkTabEv
 import ch.takoyaki.email.html.client.ui.generic.ClosableTabLayoutPanel.RenameTabEventHandler;
 import ch.takoyaki.email.html.client.ui.generic.CloseableTabs;
 import ch.takoyaki.email.html.client.ui.generic.CloseableTabsWrapper;
+import ch.takoyaki.email.html.client.ui.generic.ResizableFlowPanel;
 import ch.takoyaki.email.html.client.ui.generic.TextEditor;
 import ch.takoyaki.email.html.client.ui.generic.TextEditor.ContentChangedHandler;
 import ch.takoyaki.email.html.client.ui.generic.VSplitPanel;
 
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -178,9 +188,8 @@ public class Html_email implements EntryPoint {
 		tabs.setMarkTabEventHandler(createMarkTabEventHAndler(tabsw, trigger));
 		openSavedTabs(tabsw);
 
-		FlowPanel north = new FlowPanel();
+		ResizableFlowPanel north = new ResizableFlowPanel();
 		north.addStyleName("north");
-
 		// menu
 		MenuBarBuilder builder = new MenuBarBuilder(fservice, preview, tabsw);
 		builder.addRootPanel(north);
@@ -191,6 +200,7 @@ public class Html_email implements EntryPoint {
 
 		// vertical split between preview and edit
 		VSplitPanel vsplit = new VSplitPanel();
+		
 
 		// wiring
 		vsplit.addNorth(north, 400);
