@@ -161,7 +161,6 @@ public class AceTextEditorWrapper extends Composite implements TextEditor,
 
 	@Override
 	public void onResize() {
-		Log.log("ace editor on resize called");
 		getAce().onResize();
 	}
 

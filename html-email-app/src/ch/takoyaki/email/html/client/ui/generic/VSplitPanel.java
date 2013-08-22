@@ -42,7 +42,6 @@ public class VSplitPanel extends Composite implements RequiresResize, ProvidesRe
 
 	@Override
 	public void onResize() {
-		Log.log("vsplitpanel onResize");
 		((SplitLayoutPanel) getWidget()).onResize();		
 	}
 }
