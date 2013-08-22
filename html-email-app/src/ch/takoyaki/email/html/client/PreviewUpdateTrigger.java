@@ -1,12 +1,11 @@
 package ch.takoyaki.email.html.client;
 
-import com.google.gwt.event.dom.client.KeyCodes;
-import com.google.gwt.event.dom.client.KeyUpEvent;
-import com.google.gwt.event.dom.client.KeyUpHandler;
+import ch.takoyaki.email.html.client.ui.generic.TextEditor;
+import ch.takoyaki.email.html.client.ui.generic.TextEditor.ContentChangedHandler;
+
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.HasText;
-import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.Widget;
 
 public class PreviewUpdateTrigger {
@@ -31,35 +30,16 @@ public class PreviewUpdateTrigger {
 			}
 		}
 	};
-	private final KeyUpHandler keyupHandler = new KeyUpHandler() {
-
+	private final ContentChangedHandler contentChangeHandler = new ContentChangedHandler() {
 		@Override
-		public void onKeyUp(KeyUpEvent event) {
-			switch (event.getNativeKeyCode()) {
-			case KeyCodes.KEY_ALT:
-			case KeyCodes.KEY_CTRL:
-			case KeyCodes.KEY_DOWN:
-			case KeyCodes.KEY_END:
-			case KeyCodes.KEY_ESCAPE:
-			case KeyCodes.KEY_HOME:
-			case KeyCodes.KEY_LEFT:
-			case KeyCodes.KEY_PAGEDOWN:
-			case KeyCodes.KEY_PAGEUP:
-			case KeyCodes.KEY_RIGHT:
-			case KeyCodes.KEY_SHIFT:
-			case KeyCodes.KEY_TAB:
-			case KeyCodes.KEY_UP:
-				break;
-			default:
-				t.cancel();
-				t.schedule(2000);
-			}
-
+		public void onChange(TextEditor te) {
+			t.cancel();
+			t.schedule(2000);
 		}
 	};
 
-	public void watchTextArea(TextArea ta) {
-		ta.addKeyUpHandler(keyupHandler);
+	public void watchTextArea(TextEditor ta) {
+		ta.addChangeHandler(contentChangeHandler);
 	}
 
 	public void setPreviewTab(Widget tabWidget, HasText title) {

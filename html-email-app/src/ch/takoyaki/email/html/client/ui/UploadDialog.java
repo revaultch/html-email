@@ -7,7 +7,6 @@ import ch.takoyaki.email.html.client.service.JsFileReader;
 import ch.takoyaki.email.html.client.service.JsFileReader.LoadCompleteHandler;
 import ch.takoyaki.email.html.client.service.JsFiles;
 import ch.takoyaki.email.html.client.ui.generic.CloseableTabs;
-import ch.takoyaki.email.html.client.ui.generic.TextAreaWithTabkey;
 import ch.takoyaki.email.html.client.ui.generic.UnOrderedList;
 import ch.takoyaki.email.html.client.utils.StringFormatter;
 
@@ -115,7 +114,7 @@ public class UploadDialog extends Composite {
 				@Override
 				public void onComplete(JsFile file, String content) {
 					fservice.store(file.getName(), content);
-					tab.add(new TextAreaWithTabkey(), file.getName());
+					tab.add(null, file.getName());
 				}
 			});
 		}

@@ -1,0 +1,3 @@
+[submodule "external/AceGWT"]
+	path = external/AceGWT
+	url = https://github.com/daveho/AceGWT

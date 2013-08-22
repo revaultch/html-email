@@ -146,7 +146,7 @@ public class ClosableTabLayoutPanel extends Composite implements CloseableTabs {
 		return close;
 	}
 
-	private void renameAction(final Widget content, final FlowPanel hpanel,
+	private void renameAction(final IsWidget content, final FlowPanel hpanel,
 			final InlineHTML titlew, final Widget closeButton) {
 		hpanel.clear();
 		final TextBox tb = new TextBox();
@@ -215,7 +215,7 @@ public class ClosableTabLayoutPanel extends Composite implements CloseableTabs {
 	 * .ui.Widget, java.lang.String)
 	 */
 	@Override
-	public void add(final Widget content, String title) {
+	public void add(final IsWidget content, String title) {
 		final FlowPanel hpanel = new FlowPanel();
 		final InlineHTML titlew = new InlineHTML(title);
 
@@ -281,7 +281,7 @@ public class ClosableTabLayoutPanel extends Composite implements CloseableTabs {
 		return getTab().getTabWidget(child);
 	}
 
-	public HasText getTabTitle(Widget child) {
+	public HasText getTabTitle(IsWidget child) {
 		FlowPanel panel = (FlowPanel) getTab().getTabWidget(child);
 		return (InlineHTML) panel.getWidget(0);
 	}

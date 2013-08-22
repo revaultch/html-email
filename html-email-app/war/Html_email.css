@@ -47,11 +47,6 @@ div.closable_tab span {
  user-select: none;
 }
 
-.editor {
- overflow: scroll !important;
- width: 99%;
- height: 100%;
-}
 
 div.ClosableTabLayoutPanel.add {
  width: 100%;
@@ -68,6 +63,7 @@ div.gwt-TabLayoutPanelTabs>div:first-child {
 
 div.gwt-TabLayoutPanel {
  height: 100%;
+
 }
 
 #root_container {
@@ -118,11 +114,8 @@ table.north tr:nth-of-type(2) td {
 
 .editor {
  overflow: scroll !important;
- width: 99%;
+ width: 100%;
  height:100%;
-}
-div.editor_container {
- margin-bottom: 72px;
 }
 
 

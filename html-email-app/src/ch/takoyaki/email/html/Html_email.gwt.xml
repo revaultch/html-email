@@ -7,7 +7,7 @@
  <inherits name='com.google.gwt.user.User' />
  <inherits name="com.google.gwt.json.JSON" />
  <inherits name="com.google.gwt.resources.Resources" />
-
+ <inherits name='edu.ycp.cs.dh.acegwt.AceGWT' />
 
  <!-- Inherit the default GWT style sheet. You can change -->
  <!-- the theme of your GWT application by uncommenting -->
@@ -16,6 +16,7 @@
  <!-- <inherits name='com.google.gwt.user.theme.standard.Standard'/> -->
  <!-- <inherits name='com.google.gwt.user.theme.chrome.Chrome'/> -->
  <!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/> -->
+
 
  <!-- Other module inherits -->
 

@@ -1,6 +1,7 @@
 package ch.takoyaki.email.html.client.ui.generic;
 
 import com.google.gwt.user.client.ui.HasText;
+import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Widget;
 
 public class CloseableTabsWrapper implements CloseableTabs {
@@ -12,7 +13,7 @@ public class CloseableTabsWrapper implements CloseableTabs {
 	}
 
 	@Override
-	public void add(Widget content, String title) {
+	public void add(IsWidget content, String title) {
 		wrapped.add(content, title);
 	}
 
@@ -27,7 +28,7 @@ public class CloseableTabsWrapper implements CloseableTabs {
 	}
 
 	@Override
-	public HasText getTabTitle(Widget ta) {
+	public HasText getTabTitle(IsWidget ta) {
 		return wrapped.getTabTitle(ta);
 	}
 

@@ -2,6 +2,7 @@ package ch.takoyaki.email.html.client;
 
 import ch.takoyaki.email.html.client.service.FileService;
 import ch.takoyaki.email.html.client.service.FileServiceImpl;
+import ch.takoyaki.email.html.client.ui.AceTextEditorWrapper;
 import ch.takoyaki.email.html.client.ui.ConfirmDelete;
 import ch.takoyaki.email.html.client.ui.ConfirmDelete.ConfirmedCallBack;
 import ch.takoyaki.email.html.client.ui.generic.ClosableTabLayoutPanel;
@@ -11,16 +12,15 @@ import ch.takoyaki.email.html.client.ui.generic.ClosableTabLayoutPanel.MarkTabEv
 import ch.takoyaki.email.html.client.ui.generic.ClosableTabLayoutPanel.RenameTabEventHandler;
 import ch.takoyaki.email.html.client.ui.generic.CloseableTabs;
 import ch.takoyaki.email.html.client.ui.generic.CloseableTabsWrapper;
-import ch.takoyaki.email.html.client.ui.generic.TextAreaWithTabkey;
+import ch.takoyaki.email.html.client.ui.generic.TextEditor;
+import ch.takoyaki.email.html.client.ui.generic.TextEditor.ContentChangedHandler;
 import ch.takoyaki.email.html.client.ui.generic.VSplitPanel;
 
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.event.dom.client.KeyUpEvent;
-import com.google.gwt.event.dom.client.KeyUpHandler;
+import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HasText;
+import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.TextArea;
-import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 /**
@@ -30,8 +30,12 @@ public class Html_email implements EntryPoint {
 
 	private final FileService fservice = new FileServiceImpl();
 
+	private TextEditor createTextArea() {
+		return new AceTextEditorWrapper();
+	}
+
 	private void addTab(final CloseableTabs tablayout, String title) {
-		final TextArea contentContainer = new TextAreaWithTabkey();
+		final TextEditor contentContainer = createTextArea();
 		tablayout.add(contentContainer, title);
 	}
 
@@ -39,28 +43,34 @@ public class Html_email implements EntryPoint {
 			final PreviewUpdateTrigger trigger) {
 		return new CloseableTabsWrapper(tabs) {
 			@Override
-			public void add(Widget widget, String title) {
-				if (widget instanceof TextArea) {
-					final TextArea contentContainer = (TextArea) widget;
-					trigger.watchTextArea(contentContainer);
-					contentContainer.addStyleName("editor");					
-					wrapped.add(contentContainer, title);
-					contentContainer.getElement().getParentElement().addClassName("editor_container");
-					String retrieved = fservice.retrieve(title);
-					if (retrieved != null) {
-						contentContainer.setText(retrieved);
-					} else {
-						fservice.store(title, "");
-					}
-					contentContainer.addKeyUpHandler(new KeyUpHandler() {
-						@Override
-						public void onKeyUp(KeyUpEvent event) {
-							String name = wrapped.getTabTitle(contentContainer)
-									.getText();
-							fservice.store(name, contentContainer.getText());
-						}
-					});
+			public void add(IsWidget widget, String title) {
+				final TextEditor contentContainer;
+				if (widget instanceof TextEditor) {
+					contentContainer = (TextEditor) widget;
+				} else {
+					contentContainer = createTextArea();
 				}
+
+				trigger.watchTextArea(contentContainer);
+				contentContainer.addStyleName("editor");
+				contentContainer.setFileName(title);
+				wrapped.add(contentContainer, title);
+
+				String retrieved = fservice.retrieve(title);
+				if (retrieved != null) {
+					contentContainer.setText(retrieved);
+				} else {
+					fservice.store(title, "");
+				}
+				contentContainer.addChangeHandler(new ContentChangedHandler() {
+					@Override
+					public void onChange(TextEditor editor) {
+						String name = wrapped.getTabTitle(contentContainer)
+								.getText();
+						fservice.store(name, contentContainer.getText());
+					}
+				});
+
 			}
 		};
 	}
@@ -112,6 +122,10 @@ public class Html_email implements EntryPoint {
 			@Override
 			public boolean onRename(CloseableTabs l, int pos,
 					String previousName, String newName) {
+				Widget content = l.getWidget(pos);
+				if (content instanceof TextEditor) {
+					((TextEditor) content).setFileName(newName);
+				}
 				if (fservice.list().contains(newName)) {
 					return false;
 				}
@@ -164,7 +178,7 @@ public class Html_email implements EntryPoint {
 		tabs.setMarkTabEventHandler(createMarkTabEventHAndler(tabsw, trigger));
 		openSavedTabs(tabsw);
 
-		VerticalPanel north = new VerticalPanel();
+		FlowPanel north = new FlowPanel();
 		north.addStyleName("north");
 
 		// menu
@@ -181,6 +195,7 @@ public class Html_email implements EntryPoint {
 		// wiring
 		vsplit.addNorth(north, 400);
 		vsplit.addSouth(preview);
+
 		rootPanel.add(vsplit);
 
 	}
