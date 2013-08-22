@@ -89,6 +89,12 @@ div#dialog_background {
  z-index: 100;
 }
 
+.gwt-MenuBarPopup {
+ z-index: 99;
+}
+
+
+
 div.gwt-DialogBox {
  z-index: 200;
 }
@@ -117,5 +123,6 @@ table.north tr:nth-of-type(2) td {
  width: 100%;
  height:100%;
 }
+
 
 
