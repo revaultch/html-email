@@ -5,7 +5,7 @@ public final class Log {
 	}
 
 	public static native void log(Object message) /*-{
-		console.log("me:" + message);
+		console.log("log: " + message);
 	}-*/;
 
 }

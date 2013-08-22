@@ -20,7 +20,7 @@ function stringtoXML(text) {
 	} else {
 		var parser = new DOMParser();
 		var doc = parser.parseFromString(text, 'text/xml');
-	}
+	}	
 	return doc;
 }
 
@@ -151,7 +151,7 @@ function wrapMime(subject, content) {
 			+ "this format, some or all of this message may not be legible.\n"
 			+ "\n" + delim + "\n" + "Content-type: text/html;\n"
 			+ "	charset=\"UTF-8\"\n"
-			//+ "Content-Disposition: inline;filename=newsletter.html\n"
+			// + "Content-Disposition: inline;filename=newsletter.html\n"
 			+ "Content-transfer-encoding: quoted-printable\n" + "\n";
 
 	var result = mail + quoted_printable_encode(utf8_encode(content)) + "\n"
@@ -159,27 +159,26 @@ function wrapMime(subject, content) {
 	return result;
 }
 
-function xslttransform(doc, xsl, dtype) {
+function xslttransform(doc, xsl) {
+	var result = "";
 	if (window.ActiveXObject) {
-		ex = doc.transformNode(xsl);
-		return dtype + xmlToString(ex);
+		result = doc.transformNode(xsl);
 	}
 	// code for Mozilla, Firefox, Opera, etc.
 	else if (document.implementation && document.implementation.createDocument) {
 		try {
 			xsltProcessor = new XSLTProcessor();
 			xsltProcessor.importStylesheet(xsl);
-			var transformed = xsltProcessor.transformToDocument(doc, document);
-			return dtype + xmlToString(transformed);
-
+			result = xsltProcessor.transformToDocument(doc, document);
 		} catch (e) {
-			console.log(e.message);
+			console.log("Error " + e.message);
 			return ""
 		}
-
-	} else {
-		return "";
 	}
+	if (typeof (result) === "object") {
+		result= xmlToString(result);
+	}
+	return result;
 }
 
 function base64_encode(data) {

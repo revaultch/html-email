@@ -73,13 +73,13 @@ public class Xsl {
 	}
 
 	private static native String xslttransformNative(String content,
-			String xsl, String dtype) /*-{
+			String xsl) /*-{
 		return $wnd.xslttransform($wnd.stringtoXML(content), $wnd
-				.stringtoXML(xsl), dtype);
+				.stringtoXML(xsl));
 	}-*/;
 
 	public static String xslttransform(String xsl, String content) {
-		return xslttransformNative(content, xsl, "");
+		return xslttransformNative(content, xsl);
 	}
 
 	public static String removeStyleSheet(String content) {

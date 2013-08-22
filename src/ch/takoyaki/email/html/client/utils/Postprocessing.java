@@ -10,7 +10,7 @@ public class Postprocessing {
 			$wnd.eval(functions);
 			return $wnd[functionHook](content);
 		} catch (e) {
-			console.log("processing failed in function:" + functionHook
+			console.log("Error: processing failed in function:" + functionHook
 					+ " with message:" + e.message);
 			return content;
 		}

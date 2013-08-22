@@ -16,21 +16,16 @@ public class JsFileReader {
 
 		private native void readAsTextNative(JsFile file, LoadCompleteHandler h)/*-{
 			this.onloadend = function(evt) {
-				console.log("onloadend");
 				if (evt.target.readyState == FileReader.DONE) { // DONE == 2
-					console.log("done");
 					var content = evt.target.result;
 					h.@ch.takoyaki.email.html.client.service.JsFileReader.LoadCompleteHandler::onComplete(Lch/takoyaki/email/html/client/service/JsFile;Ljava/lang/String;)(file,content);
 				} else {
-					console.log("!done");
 					h.@ch.takoyaki.email.html.client.service.JsFileReader.LoadCompleteHandler::onError(Lch/takoyaki/email/html/client/service/JsFile;)(file);
 				}
 			};
 			this.onerror = function(evt) {
 				h.@ch.takoyaki.email.html.client.service.JsFileReader.LoadCompleteHandler::onError(Lch/takoyaki/email/html/client/service/JsFile;)(file);
 			}
-			console.log(file);
-			console.log("going to read");
 			this.readAsText(file);
 		}-*/;
 	}
